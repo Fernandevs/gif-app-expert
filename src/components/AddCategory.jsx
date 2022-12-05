@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export const AddCategory = ({ onAddNewValue }) => {
     const [inputValue, setInputValue] = useState('');
@@ -10,14 +11,14 @@ export const AddCategory = ({ onAddNewValue }) => {
 
         const newInputValue = inputValue.trim();
 
-        if(newInputValue.length <= 1) return;
+        if (inputValue.length <= 1) return;
 
         onAddNewValue(newInputValue);
         setInputValue('');
     };
 
     return (
-        <form onSubmit={ onSubmit }>
+        <form onSubmit={ onSubmit } aria-label="form">
             <input
                 type="text"
                 placeholder="Buscar gifs"
@@ -25,4 +26,8 @@ export const AddCategory = ({ onAddNewValue }) => {
             />
         </form>
     );
+};
+
+AddCategory.propTypes = {
+    onAddNewValue: PropTypes.func.isRequired
 };
